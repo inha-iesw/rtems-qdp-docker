@@ -1,0 +1,46 @@
+{
+  "name": "RTEMS Kernel Development",
+  "dockerFile": "../Dockerfile",
+  "workspaceFolder": "/rtems_ws/mount_point",
+  "mounts": [
+    "source=${localWorkspaceFolder},target=/rtems_ws/mount_point,type=bind"
+  ],
+  "privileged": true,
+  "customizations": {
+    "vscode": {
+      "extensions": [
+        "llvm-vs-code-extensions.vscode-clangd",
+        "jeff-hykin.better-c-syntax",
+        "vadimcn.vscode-lldb",
+        "MarekMaslanka.kernel-inspect",
+        "albert.TabOut",
+        "ybaumes.highlight-trailing-white-spaces",
+        "MarekMaslanka.kernel-inspect",
+        "eamodio.gitlens",
+        "twxs.cmake",
+        "rioj7.command-variable",
+        "coolchyni.beyond-debug"
+      ],
+      "settings": {
+        "terminal.integrated.defaultProfile.linux": "bash",
+        "files.associations": {
+          "*.h": "c",
+          "*.c": "c",
+          "*.cpp": "cpp",
+          "*.cc": "cpp",
+          "*.hpp": "cpp"
+        }
+      }
+    }
+  },
+  "runArgs": [
+    "--cap-add=SYS_PTRACE",
+    "--security-opt=seccomp:unconfined",
+    "--cpus=6"
+  ],
+  "postCreateCommand": "chmod +x /rtems_ws/mount_point/setup-kernel.sh && /rtems_ws/mount_point/setup-kernel.sh",
+  "remoteUser": "root",
+  "forwardPorts": [
+    6144
+  ]
+}

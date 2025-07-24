@@ -1,0 +1,23 @@
+{
+  "rtems-qdp-builder.currentConfig": {
+    "targetArchitecture": "sparc",
+    "targetBSP": "gr740",
+    "isSMP": true,
+    "buildDirectory": "build-sparc-gr740-smp-user-qual",
+    "selectedSteps": [
+      "steps/build-bsp",
+      "steps/build-ddf-sdd",
+      "steps/build-bsp-qual-only",
+      "steps/build-bsp-qual-only-coverage",
+      "steps/run-local-target-qual-only",
+      "steps/run-local-target-qual-only-coverage",
+      "steps/build-djf-svr"
+    ],
+    "deploymentDirectory": "/opt/rtems-6-sparc-gr740-smp-5",
+    "configVariant": "sparc-gr740-smp",
+    "platform": {
+      "description": "User Hardware Execution",
+      "name": "board"
+    }
+  }
+}

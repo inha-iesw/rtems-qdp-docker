@@ -1,0 +1,50 @@
+// {
+//   "version": "2.0.0",
+//   "tasks": [
+//     {
+//       "label": "start-sis",
+//       "type": "shell",
+//       "command": "${input:sisCommand} -gdb ${input:sisOptions}",
+//       "isBackground": true,
+//       "presentation": {
+//         "echo": true,
+//         "reveal": "always",
+//         "panel": "new"
+//       },
+//       "problemMatcher": {
+//         "pattern": {
+//           "regexp": ".*"
+//         },
+//         "background": {
+//           "activeOnStart": true,
+//           "beginsPattern": ".*SIS - SPARC.*",
+//           "endsPattern": ".*listening on port.*"
+//         }
+//       }
+//     },
+//     {
+//       "label": "clean-sis",
+//       "type": "shell",
+//       "command": "pkill -9 -f ${input:sisCommand}",
+//       "presentation": {
+//         "echo": true,
+//         "reveal": "always",
+//         "panel": "shared"
+//       },
+//     }
+//   ],
+//   "inputs": [
+//     {
+//       "id": "sisCommand",
+//       "description": "SIS 실행 파일",
+//       "type": "promptString",
+//       "default": "sparc-rtems6-sis"
+//     },
+//     {
+//       "id": "sisOptions",
+//       "description": "추가 SIS 옵션 (선택사항)",
+//       "type": "promptString",
+//       "default": ""
+//     },
+//   ]
+// }

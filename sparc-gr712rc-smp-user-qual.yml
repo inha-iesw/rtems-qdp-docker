@@ -1,0 +1,68 @@
+build-directory: build-sparc-gr712rc-smp-user-qual
+post-process-items:
+  - uid: /steps/build-djf-svr
+    path: /test-log-files
+    action: set
+    value:
+      - platform-description: "User Hardware Execution"
+        platform-name: board
+        standard-log: ${../variant:/build-directory}/test-reports/log-run-rtems-qual-only-board.yaml
+        coverage-log: ${../variant:/build-directory}/test-reports/log-run-rtems-qual-only-board-cov.yaml
+  - uid: /dirs/djf-svr-deploy/dir
+    path: /directory
+    action: set
+    value: ${/variant:/deployment-directory}/user_doc/djf/svr
+  - uid: /dirs/ddf-sdd-deploy/dir
+    path: /directory
+    action: set
+    value: ${/variant:/deployment-directory}/user_doc/ddf/sdd
+  - uid: /steps/build-djf-svr
+    path: /config-file
+    action: set
+    value: rtems/djf/svr/config_user.yml
+  - uid: /steps/run-local-target-qual-only
+    path: /commands
+    action: set
+    value:
+      - - "${../variant:/deployment-directory}/bin/rtems-test"
+        - "--user-config=${.:config-directory}/${.:config-file}"
+        - "--rtems-bsp=${.:config-variant}"
+        - "."
+        - "--log-mode=all"
+        - "--jobs=1"
+        - "--timeout=7200"
+        - "--report-format=yaml"
+        - "--report-path=${.:executables-directory}/log-run-rtems-qual-only-board"
+  - uid: /steps/run-local-target-qual-only-coverage
+    path: /commands
+    action: set
+    value:
+      - - "${../variant:/deployment-directory}/bin/rtems-test"
+        - "--user-config=${.:config-directory}/${.:config-file}"
+        - "--rtems-bsp=${.:config-variant}"
+        - "."
+        - "--log-mode=all"
+        - "--jobs=1"
+        - "--timeout=7200"
+        - "--report-format=yaml"
+        - "--report-path=${.:executables-directory}/log-run-rtems-qual-only-board-cov"
+  - uid: /package-build
+    path: /links
+    action: set
+    value:
+      - role: build-step
+        uid: steps/build-bsp-qual-only
+      - role: build-step
+        uid: steps/build-bsp-qual-only-coverage
+      - role: build-step
+        uid: steps/run-local-target-qual-only
+      - role: build-step
+        uid: steps/run-local-target-qual-only-coverage
+      - role: build-step
+        uid: steps/build-ddf-sdd
+      - role: build-step
+        uid: steps/build-djf-svr
+spec-paths:
+  - spec-spec
+  - spec-glossary
+  - config
