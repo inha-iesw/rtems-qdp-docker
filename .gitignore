@@ -1,3 +1,9 @@
 rtems-6-sparc-gr740-smp-5.tar.xz
 rtems-6-sparc-gr740-smp-5
+rtems
+src
+sched_benchmark
+*.zip
+*.pdf
+*.bk
 *.vsix

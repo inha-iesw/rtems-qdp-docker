@@ -78,7 +78,8 @@ RUN apt-get update && apt-get upgrade -yq && apt-get install -y \
 WORKDIR /opt
 
 # RUN wget https://rtems-qual.io.esa.int/public_release/QDPV5/rtems-6-sparc-gr740-smp-5.tar.xz
-COPY rtems-6-sparc-gr740-smp-5.tar.xz .
-COPY sparc-gr712rc-smp-user-qual.yml .
+# COPY rtems-6-sparc-gr740-smp-5.tar.xz .
+COPY config.ini .
+COPY test_config.ini .
 
 CMD ["/bin/bash"]

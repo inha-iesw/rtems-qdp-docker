@@ -6,11 +6,11 @@
     "buildDirectory": "build-sparc-gr740-smp-user-qual",
     "selectedSteps": [
       "steps/build-bsp",
-      "steps/build-ddf-sdd",
       "steps/build-bsp-qual-only",
       "steps/build-bsp-qual-only-coverage",
       "steps/run-local-target-qual-only",
       "steps/run-local-target-qual-only-coverage",
+      "steps/build-ddf-sdd",
       "steps/build-djf-svr"
     ],
     "deploymentDirectory": "/opt/rtems-6-sparc-gr740-smp-5",
@@ -19,5 +19,32 @@
       "description": "User Hardware Execution",
       "name": "board"
     }
-  }
+  },
+  "clangd.path": "/usr/bin/clangd-11",
+  "clangd.fallbackFlags": [
+    "-I/opt/sched_benchmark/utils/include",
+    "-I/opt/sched_benchmark/cache_friendliness/include",
+    "-isystem",
+    "/opt/src/rtems/testsuites/support/include",
+    "-isystem",
+    "/opt/rtems/6/sparc-rtems6/gr740/lib/include",
+    "-isystem",
+    "/opt/rtems/6/sparc-rtems6/include",
+    "-B/opt/rtems/6/sparc-rtems6/gr740/lib",
+    "-lrtemscpu",
+    "-lrtemstest",
+    "-lrtemsbsp",
+    "-mcpu=leon3",
+    "--target=sparc-rtems6",
+    "-D__rtems__",
+    "-D__STRICT_ANSI__",
+    "-DRTEMS_POSIX_API",
+  ],
+  "clangd.arguments": [
+    "--background-index",
+    "--clang-tidy=false",
+    "--completion-style=detailed"
+  ],
+  "claudeCodeChat.permissions.yoloMode": false,
+  "C_Cpp.clang_format_style": "file",
 }
