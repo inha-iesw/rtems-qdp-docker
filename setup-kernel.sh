@@ -3,7 +3,7 @@
 apt-get update
 
 if [ ! -d '/opt/src/rsb' ]; then
-  rm -rf /opt/src/rtems-source-builder-6.1 2> /dev/null
+  # rm -rf /opt/src/rtems-source-builder-6.1 2> /dev/null
   rm -rf /opt/src/rsb 2> /dev/null
   echo "Downloading RTEMS source builder 6.1 ..."
   mkdir -p /opt/src
@@ -22,8 +22,8 @@ else
 fi
 
 if [ ! -d '/opt/src/rtems-6.1' ]; then
-  rm -rf /opt/src/rtems-6.1 2> /dev/null
-  echo "Downloading RTEMS kernel source 6.1 ..."
+  # rm -rf /opt/src/rtems-6.1 2> /dev/null
+  echo "Downloading RTEMS kernel source 6 ..."
   cd /opt/src
   git clone https://gitlab.rtems.org/rtems/rtos/rtems.git
   cd rtems
@@ -31,7 +31,7 @@ if [ ! -d '/opt/src/rtems-6.1' ]; then
   echo "Build the BSP..."
   cp /opt/config.ini /opt/src/rtems
   # ./waf configure --prefix=/opt/rtems/6 --enable-rtemsbsp=sparc/leon3
-  ./waf configure --prefix=/opt/rtems/6 --rtems-config=config.ini
+  ./waf configure --rtems-bsps=sparc/gr740 --rtems-tools=/opt/rtems/6 --prefix=/opt/rtems/6 --rtems-config=config.ini
   ./waf && ./waf install
   echo "RTEMS BSP built and installed successfully!"
 else

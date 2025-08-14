@@ -67,6 +67,7 @@ RUN apt-get update && apt-get upgrade -yq && apt-get install -y \
     ssh \
     openssh-server \
     g++ \
+    clangd-11 \
     # 디버깅 도구
     gdb \
     # 분석 도구

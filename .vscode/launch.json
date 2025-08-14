@@ -1,64 +1,63 @@
-// {
-//   "version": "0.2.0",
-//   "configurations": [
-//     {
-//       "name": "Debug(sis)",
-//       "type": "by-gdb",
-//       "request": "launch",
-//       "cwd": "${workspaceFolder}",
-//       "debuggerPath": "${input:gdbPath}",
-//       "program": "${input:programPath}",
-//       "preLaunchTask": "start-sis",
-//       "postDebugTask": "clean-sis",
-//       "commandsBeforeExec": [
-//         "load"
-//       ],
-//       "remote": {
-//         "enabled": true,
-//         "address": ":1234",
-//         "mode": "remote",
-//         "execfile": "${input:programPath}"
-//       }
-//     }
-//   ],
-//   "inputs": [
-//     {
-//       "id": "gdbPath",
-//       "description": "GDB 경로를 입력하세요",
-//       "default": "sparc-rtems6-gdb",
-//       "type": "promptString"
-//     },
-//     {
-//       "id": "programPath",
-//       "type": "command",
-//       "command": "extension.commandvariable.file.pickFile",
-//       "args": {
-//         "include": "**/*.exe",
-//         "exclude": "**/mount_point/**"
-//       }
-//     }
-//   ]
-// }
-// .vscode/launch.json
 {
   "version": "0.2.0",
   "configurations": [
     {
-      "name": "Python Debugger: Current File with Arguments",
-      "type": "debugpy",
+      "name": "Debug(sis)",
+      "type": "by-gdb",
       "request": "launch",
-      "program": "${file}",
-      "console": "integratedTerminal",
-      "args": "${command:pickArgs}",
-      "cwd": "/opt/src/rtems"
+      "cwd": "${workspaceFolder}",
+      "debuggerPath": "${input:gdbPath}",
+      "program": "${input:programPath}",
+      "preLaunchTask": "start-sis",
+      "postDebugTask": "clean-sis",
+      "commandsBeforeExec": [
+        "load"
+      ],
+      "remote": {
+        "enabled": true,
+        "address": ":1234",
+        "mode": "remote",
+        "execfile": "${input:programPath}"
+      }
+    }
+  ],
+  "inputs": [
+    {
+      "id": "gdbPath",
+      "description": "GDB 경로를 입력하세요",
+      "default": "/opt/rtems/6/bin/sparc-rtems6-gdb",
+      "type": "promptString"
     },
     {
-      "name": "Run Extension",
-      "type": "extensionHost",
-      "request": "launch",
-      "args": [
-        "--extensionDevelopmentPath=${workspaceFolder}"
-      ]
+      "id": "programPath",
+      "type": "command",
+      "command": "extension.commandvariable.file.pickFile",
+      "args": {
+        "include": "**/*.exe",
+        "exclude": "**/mount_point/**"
+      }
     }
   ]
 }
+// {
+//   "version": "0.2.0",
+//   "configurations": [
+//     {
+//       "name": "Python Debugger: Current File with Arguments",
+//       "type": "debugpy",
+//       "request": "launch",
+//       "program": "${file}",
+//       "console": "integratedTerminal",
+//       "args": "${command:pickArgs}",
+//       "cwd": "/opt/src/rtems"
+//     },
+//     {
+//       "name": "Run Extension",
+//       "type": "extensionHost",
+//       "request": "launch",
+//       "args": [
+//         "--extensionDevelopmentPath=${workspaceFolder}"
+//       ]
+//     }
+//   ]
+// }
