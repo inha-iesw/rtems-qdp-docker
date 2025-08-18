@@ -21,6 +21,7 @@ RUN apt-get update && apt-get upgrade -yq && apt-get install -y \
     clang-tools \
     cppcheck \
     latexmk \
+    pv \
     graphviz \
     vim \
     u-boot-tools \
