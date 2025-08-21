@@ -4,6 +4,5 @@ rtems
 src
 sched_benchmark
 *.zip
-*.pdf
 *.bk
 *.vsix
