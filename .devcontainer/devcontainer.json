@@ -1,9 +1,16 @@
 {
-  "name": "RTEMS QDP Development",
-  "dockerFile": "../QDP.Dockerfile",
+  "name": "RTEMS Development",
+  "dockerFile": "../RTEMS.Dockerfile",
   "workspaceFolder": "/opt",
+  "containerEnv": {
+    "DISPLAY": "localhost:10.0"
+  },
   "mounts": [
-    "source=${localWorkspaceFolder},target=/opt,type=bind"
+    "source=${localWorkspaceFolder},target=/opt,type=bind",
+    "source=${localEnv:HOME}/.Xauthority,target=/root/.Xauthority,type=bind"
+  ],
+  "runArgs": [
+    "--net=host"
   ],
   "privileged": true,
   "customizations": {
@@ -23,6 +30,7 @@
         "msfukui.eof-mark",
         "redhat.vscode-yaml",
         "coolchyni.beyond-debug",
+        "oderwat.indent-rainbow",
         "ms-python.python",
         "MS-CEINTL.vscode-language-pack-ko"
       ],
@@ -42,6 +50,7 @@
   "postCreateCommand": "chmod +x /opt/setup-kernel.sh && /opt/setup-kernel.sh",
   "remoteUser": "root",
   "forwardPorts": [
-    6144
+    6144,
+    10
   ]
 }

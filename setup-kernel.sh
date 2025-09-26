@@ -14,12 +14,13 @@ if [ ! -d '/opt/src/rsb' ]; then
   echo "Build and install the tool suite..."
   cd rtems/
   ../source-builder/sb-set-builder --prefix=/opt/rtems/6 6/rtems-sparc
-  export PATH=/opt/rtems/6/bin:$PATH
-  echo 'export PATH=/opt/rtems/6/bin:$PATH' >> ~/.bashrc
   echo "RTEMS source builder installed successfully!"
 else
   echo "Source builder already exists!"
 fi
+
+export PATH=/opt/rtems/6/bin:$PATH
+echo 'export PATH=/opt/rtems/6/bin:$PATH' >> ~/.bashrc
 
 if [ ! -d '/opt/src/rtems-6.1' ]; then
   # rm -rf /opt/src/rtems-6.1 2> /dev/null
