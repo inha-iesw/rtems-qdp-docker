@@ -11,13 +11,14 @@
       "preLaunchTask": "start-sis",
       "postDebugTask": "clean-sis",
       "commandsBeforeExec": [
+        "file ${input:programPath}",
+        "target extended-remote localhost:1234",
         "load"
       ],
       "remote": {
         "enabled": true,
-        "address": ":1234",
-        "mode": "remote",
-        "execfile": "${input:programPath}"
+        "address": "localhost:1234",
+        "mode": "extended-remote"
       }
     }
   ],
@@ -34,30 +35,8 @@
       "command": "extension.commandvariable.file.pickFile",
       "args": {
         "include": "**/*.exe",
-        "exclude": "**/mount_point/**"
+        "exclude": "**/{mount_point,env}/**"
       }
     }
   ]
 }
-// {
-//   "version": "0.2.0",
-//   "configurations": [
-//     {
-//       "name": "Python Debugger: Current File with Arguments",
-//       "type": "debugpy",
-//       "request": "launch",
-//       "program": "${file}",
-//       "console": "integratedTerminal",
-//       "args": "${command:pickArgs}",
-//       "cwd": "/opt/src/rtems"
-//     },
-//     {
-//       "name": "Run Extension",
-//       "type": "extensionHost",
-//       "request": "launch",
-//       "args": [
-//         "--extensionDevelopmentPath=${workspaceFolder}"
-//       ]
-//     }
-//   ]
-// }

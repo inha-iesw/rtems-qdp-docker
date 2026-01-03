@@ -30,7 +30,7 @@
         "echo": true,
         "reveal": "always",
         "panel": "shared"
-      },
+      }
     }
   ],
   "inputs": [
@@ -44,7 +44,7 @@
       "id": "sisOptions",
       "description": "추가 SIS 옵션 (선택사항)",
       "type": "promptString",
-      "default": "-gr740 -nouartrx -r s -m 4"
-    },
+      "default": "-gr740 -m 4"
+    }
   ]
 }

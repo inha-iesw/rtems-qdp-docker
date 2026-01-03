@@ -74,6 +74,25 @@ RUN apt-get update && apt-get upgrade -yq && apt-get install -y \
     # 분석 도구
     cscope \
     exuberant-ctags \
+    # X11 패키지
+    x11-apps \
+    x11-utils \
+    xauth \
+    # GUI 라이브러리
+    libx11-dev \
+    libxext-dev \
+    libxrender-dev \
+    libxtst6 \
+    # GTK/Qt 지원
+    libgtk-3-dev \
+    qt5-default \
+    # 폰트 관련
+    fontconfig \
+    fonts-dejavu-core \
+    # 오디오 지원
+    pulseaudio-utils \
+    # 개발 도구
+    mesa-utils \
     && rm -rf /var/lib/apt/lists/*
 
 # 작업 디렉토리 설정
@@ -83,5 +102,14 @@ WORKDIR /opt
 # COPY rtems-6-sparc-gr740-smp-5.tar.xz .
 COPY config.ini .
 COPY test_config.ini .
+
+
+# X11 권한 설정 및 디렉토리 생성
+RUN mkdir -p /tmp/.X11-unix && \
+    chmod 1777 /tmp/.X11-unix && \
+    mkdir -p /mnt/wslg
+
+RUN echo '#!/bin/bash\necho "Testing GUI..."\necho "DISPLAY: $DISPLAY"\necho "XDG_RUNTIME_DIR: $XDG_RUNTIME_DIR"\nls -la /tmp/.X11-unix/\nls -la /mnt/wslg/ 2>/dev/null || echo "WSLg not mounted"\nxclock &\nsleep 2\nkillall xclock 2>/dev/null || true\necho "GUI test completed"' > /usr/local/bin/test-gui && \
+    chmod +x /usr/local/bin/test-gui
 
 CMD ["/bin/bash"]

@@ -2,6 +2,22 @@
   "name": "RTEMS QDP Development",
   "dockerFile": "../QDP.Dockerfile",
   "workspaceFolder": "/opt",
+  "runArgs": [
+    "--net=host",
+    "--ipc=host",
+    "--pid=host",
+    "--volume=/tmp/.X11-unix:/tmp/.X11-unix:rw",
+    "--volume=/mnt/wslg:/mnt/wslg:rw",
+    "--volume=/usr/share/fonts:/usr/share/fonts:ro",
+    "--device=/dev/dri:/dev/dri",
+    "--env=DISPLAY=${localEnv:DISPLAY:-:0}",
+    "--env=WAYLAND_DISPLAY=${localEnv:WAYLAND_DISPLAY:-wayland-0}",
+    "--env=XDG_RUNTIME_DIR=${localEnv:XDG_RUNTIME_DIR:-/mnt/wslg/runtime-dir}",
+    "--env=PULSE_RUNTIME_PATH=${localEnv:PULSE_RUNTIME_PATH}"
+  ],
+  "containerEnv": {
+    "LIBGL_ALWAYS_INDIRECT": "1"
+  },
   "mounts": [
     "source=${localWorkspaceFolder},target=/opt,type=bind"
   ],
