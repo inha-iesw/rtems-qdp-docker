@@ -1,0 +1,26 @@
+#
+# pkg-config support file for RTEMS BSP sparc/gr740
+#
+# Warning: This stuff is experimental and may be changed at any time.
+#
+
+prefix=/opt/rtems/6
+exec_prefix=${prefix}/sparc-rtems6
+libdir=${exec_prefix}/gr740/lib
+includedir=${libdir}/include
+
+ABI_FLAGS=-mcpu=leon3
+RTEMS_ARCH=sparc
+RTEMS_BSP=gr740
+RTEMS_BSP_BASE=gr740
+RTEMS_BSP_FAMILY=leon3
+RTEMS_MAJOR=6
+RTEMS_MINOR=0
+RTEMS_REVISION=0
+
+Name: sparc-rtems6-gr740
+Version: 6.0.0
+Description: RTEMS BSP sparc/gr740
+Cflags: ${ABI_FLAGS} -isystem${includedir}
+Ldflags: ${ABI_FLAGS} -B${libdir} -qrtems -Wl,--gc-sections
+Libs: ${ABI_FLAGS} -B${libdir} -qrtems -Wl,--gc-sections
